@@ -82,9 +82,12 @@ gallery.insertAdjacentHTML('beforeend', gallImg);
 gallery.addEventListener('click', selectorImage);
 function selectorImage(event) {
   event.preventDefault();
-  if (event.target === event.currentTarget) {
+  if (
+    event.target.classList.contains('gallery-image') === event.currentTarget
+  ) {
     return;
   }
+
   const original = event.target.dataset.source;
   const description = event.target.alt;
   const instance = basicLightbox.create(
@@ -107,9 +110,9 @@ function selectorImage(event) {
     }
   );
   instance.show();
-}
-function onModalClose(event) {
-  if (event.code === 'Escape') {
-    instance.close();
+  function onModalClose(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
   }
 }
