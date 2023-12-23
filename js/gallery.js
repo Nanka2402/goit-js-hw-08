@@ -82,9 +82,8 @@ gallery.insertAdjacentHTML('beforeend', gallImg);
 gallery.addEventListener('click', selectorImage);
 function selectorImage(event) {
   event.preventDefault();
-  if (
-    event.target.classList.contains('gallery-image') === event.currentTarget
-  ) {
+  const galleryImage = event.target.classList.contains('gallery-image');
+  if (!galleryImage) {
     return;
   }
 
@@ -92,9 +91,8 @@ function selectorImage(event) {
   const description = event.target.alt;
   const instance = basicLightbox.create(
     `<div class="modal">
-        <a class="gallery-link" href="${original}">
+       
       <img
-        class="gallery-image"
         src="${original}"
         alt="${description}"
       />
